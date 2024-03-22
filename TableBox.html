@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Text Project</title>
+	<link rel="stylesheet" type="text/css" href="TextProject.css">
+</head>
+<body>
+<h1 align="center" class="heading">Text Box</h1>
+<div class="container" align="center">
+	<form class = "textboxform">
+		<label>Enter Your Text Below</label>
+		<br>
+		<br>
+		<textarea class="textarea" id ="text" rows="10" cols="70" onkeyup="updateInfo()"autofocus></textarea><br><br>
+		<button type="button"onclick="transformUpperCase()">Uppercase</button>
+		<button type="button"onclick="transformLowerCase()">Lowecase</button>
+		<button type="button"onclick="findtext()">Find</button>
+		<button type="button"onclick="copy()">copy</button>
+		<button type="button"onclick="changeColor()">Changecolor</button>
+		<button type="button"onclick="textUnderline()">Text Under Line</button>
+		<br>
+		<br>
+		<h2 id="textInfo">This text contains 0 words and 0 character</h2>
+	</form>
+</div>
+<script type="text/javascript">
+	let text =document.getElementById("text");
+	let textInfp = document.getElementById("textInfo");
+	let clr = "black";
+
+	function transformUpperCase(){
+		text.value=text.value.toUpperCase();
+	}
+	function transformLowerCase(){
+		text.value=text.value.toLowerCase();
+	}
+	function findtext(){
+		let searchText = prompt("Enter The Text :");
+		if (text.value.includes(searchText)) 
+		{
+			alert(`search text ${searchText} is present`);
+		}
+		else{
+			alert(`search text ${searchText} is not Present`);
+		}
+	}
+	function changeColor(){
+		clr = prompt(("Enter Your Color : ").toLowerCase());
+		text.style.color=clr;
+	}
+	function copy(){
+		navigator.clipboard.writeText(text.value);
+	}
+	function textUnderline(){
+		text.style.textDecoration=`underline 2px solid ${clr}`;
+	}
+	function UpdateInfo(){
+		let numberOfWords = text.value.trim().split(" ").length;
+		if (numberOfWords) 
+		{
+			textInfo.innerHTML = `This text contains ${numberOfWords} words and ${text.value.length} characters`;
+		}
+	}
+</script>
+</body>
+</html>
